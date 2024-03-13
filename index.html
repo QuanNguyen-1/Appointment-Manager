@@ -4,20 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment Manager</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-    <h1>Appointment Manager</h1>
-    <img src="./imgs/gelandspalogo (1).jpg" alt="Logo for Gel and Spa Salon"/>
-    <div id="entryBox">
-        <a href="./entry.html">Enter a New Appointment</a>
-    </div>
-    <div id="searchBox">
-        <p>Search For an Appointment</p>
-        <div id="dropdown-content">
-            <a href="./search-name.html">Name</a>
-            <a href="./search-date.html">Date</a>
-            <a href="./search-today.html">Today</a>
+    <div class="container-fluid">
+        <h1 class="text-center title">Appointment Manager</h1>
+        <img id="logo" class="d-block mx-auto rounded" src="./imgs/gelandspalogo (1).jpg" alt="Logo for Gel and Spa Salon" />
+        <div class="row">
+            <div class="col-sm-1 space"></div>
+            <div id="entryBox" class="col-sm-4 text-center">
+                <a href="./entry.html" class="text-decoration-none">
+                    <button id="entryBtn" class="btn btn-block p-4">Enter a New Appointment</button>
+                </a>
+            </div>
+            <div class="col-sm-2 space"></div>
+            <div id="searchBox" class="col-sm-4 text-center">
+                <div id="dropdown">
+                    <button id="dropBtn" class="btn btn-block p-4">Search For an Appointment</button>
+                    <div id="dropdown-content">
+                        <a href="./search-name.html" class="text-decoration-none">Name</a>
+                        <a href="./search-date.html" class="text-decoration-none">Date</a>
+                        <a href="./search-today.html" class="text-decoration-none">Today</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 space"></div>
         </div>
     </div>
+
+    
 </body>
 </html>
