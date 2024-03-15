@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Entry</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body class="body">
+    <div class="container-fluid">
+        <h1 class="title text-center">Enter Appointment Information</h1>
+        <form id="entry-form">
+            <div class="input-group form-margin-btm">
+                <label class="input-group-text" for="name">Enter Name:</label>
+                <input id="name" class="form-control" type="text" required />
+            </div>
+            <div class="input-group">
+                <label class="input-group-text" for="number">Enter Phone Number:</label>
+                <input id="number" class="form-control" type="tel" pattern="^[0-9]{10}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$"/>
+            </div>
+            <small>ex. 123-456-7890 or 1234567890</small>
+            <div class="row form-margin-top">
+                <div class="input-group col-sm-6">
+                    <label class="input-group-text" for="date">Enter the Appointment Date:</label>
+                    <input id="date" class="form-control" type="date" required/>
+                </div>
+                <div class="input-group col-sm-6">
+                    <label class="input-group-text" for="time">Enter the Appointment Time:</label>
+                    <input id="time" class="form-control" type="time" required />
+                </div>
+            </div>
+            <input class="btn" type="submit" id="submit" value="Submit" />
+        </form>
+    </div>
+
+</body>
+</html>
