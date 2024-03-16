@@ -97,7 +97,7 @@
     background-color: var(--btn-hover-color);
 }
 
-#entry-form{
+#entry-form, #nameInput, #dateInput, #todaySearchBtn { 
     margin-top: 70px;
 }
 
@@ -115,4 +115,50 @@
 
 .body label {
     font-weight: bold;
+}
+
+#doneDialog {
+    width: 50%;
+    height: 200px;
+    text-align: center;
+    position: absolute;
+    top: 120px;
+}
+
+#returnHome {
+    border: 1px solid black;
+    background-color: var(--btn-color);
+    color: white;
+    margin-top: 40px;
+}
+
+
+/* styling for search-name, search-date, and search-today pages */
+
+#nameTable,#dateTable, #todayTable{
+    margin-top: 150px;
+    text-align: center;
+    background-color: white;
+}
+
+#nameSearchBtn,#dateSearchBtn, #todaySearchBtn{
+    background-color: var(--btn-color);
+    border: 1px solid black;
+    color: white;
+}
+
+#returnHome:hover, #nameSearchBtn:hover, #dateSearchBtn:hover, #todaySearchBtn:hover {
+    background-color: var(--btn-hover-color);
+}
+
+#dateInput,#nameInput {
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#todaySearchBtn{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
