@@ -10,35 +10,28 @@
 <body class="body">
     <div class="container-fluid">
         <h1 class="title text-center">Enter Appointment Information</h1>
-        <form id="entry-form">
+        <form id="entry-form" action="./process-entry.php" method="post">
             <div class="input-group form-margin-btm">
-                <label class="input-group-text" for="name">Enter Name:</label>
-                <input id="name" class="form-control" type="text" required />
+                <label class="input-group-text" for="name" >Enter Name:</label>
+                <input id="name" class="form-control" name="name" type="text" required />
             </div>
             <div class="input-group">
                 <label class="input-group-text" for="number">Enter Phone Number:</label>
-                <input id="number" class="form-control" type="tel" pattern="^[0-9]{10}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$"/>
+                <input id="number" class="form-control" name="number" type="tel" pattern="^[0-9]{10}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$"/>
             </div>
             <small>ex. 123-456-7890 or 1234567890</small>
             <div class="row form-margin-top">
                 <div class="input-group col-sm-6">
                     <label class="input-group-text" for="date">Enter the Appointment Date:</label>
-                    <input id="date" class="form-control" type="date" required/>
+                    <input id="date" class="form-control" name="date" type="date" required/>
                 </div>
                 <div class="input-group col-sm-6">
                     <label class="input-group-text" for="time">Enter the Appointment Time:</label>
-                    <input id="time" class="form-control" type="time" required />
+                    <input id="time" class="form-control" name="time" type="time" required />
                 </div>
             </div>
             <input class="btn" type="submit" id="submit" value="Submit" />
         </form>
-        <dialog id="doneDialog">
-            <p class="mt-3">Appointment has been added.</p>
-            <a href="./index.html">
-                <button class="btn" id="returnHome">Return to Home Page</button>
-            </a>
-        </dialog>
     </div>
-    <script src="./script.js"></script>
 </body>
 </html>
