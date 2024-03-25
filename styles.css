@@ -97,7 +97,7 @@
     background-color: var(--btn-hover-color);
 }
 
-#entry-form, #nameInput, #dateInput, #todaySearchBtn { 
+#entry-form, #name-form, #date-form, #todaySearchBtn { 
     margin-top: 70px;
 }
 
@@ -147,7 +147,7 @@
     color: white;
 }
 
-#returnHome:hover, #nameSearchBtn:hover, #dateSearchBtn:hover, #todaySearchBtn:hover {
+#returnHome:hover, #nameSearchBtn:hover, #dateSearchBtn:hover, #todaySearchBtn:hover, #name-return-home:hover, #date-return-home:hover, #today-return-home:hover {
     background-color: var(--btn-hover-color);
 }
 
@@ -161,6 +161,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    font-size: 1.2em;
 }
 
 #returnHome {
@@ -168,4 +169,15 @@
     display: block;
     font-size: 1.5em;
     padding: 20px;
+}
+
+#name-return-home, #date-return-home, #today-return-home{
+    background-color: var(--btn-color);
+    border: 1px solid black;
+    color: white;
+    margin-top: 80px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2em;
 }
