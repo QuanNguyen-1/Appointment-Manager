@@ -51,7 +51,6 @@
                             <table id='todayTable' class='table table-bordered'>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Name</th>
                                         <th>Phone Number</th>
                                         <th>Date</th>
@@ -62,7 +61,6 @@
                                 <tbody>";
                     while($row = $result->fetch_assoc()){
                         echo "<tr>
-                                <td>" . $row["id"] . "</td>
                                 <td>" . $row["name"] . "</td>
                                 <td>" . $row["number"] . "</td>
                                 <td>" . $row["date"] . "</td>

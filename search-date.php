@@ -63,7 +63,6 @@
                                 <table id='dateTable' class='table table-bordered'>
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Name</th>
                                             <th>Phone Number</th>
                                             <th>Date</th>
@@ -75,7 +74,6 @@
                         //loop through all the row results from the select query
                         while($row = $result->fetch_assoc()){
                             echo "<tr>
-                                    <td>" . $row["id"] . "</td>
                                     <td>" . $row["name"] . "</td>
                                     <td>" . $row["number"] . "</td>
                                     <td>" . $row["date"] . "</td>
