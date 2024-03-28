@@ -15,15 +15,7 @@
         $nameInput = $nameErr = "";
 
         if (isset($_GET['id'])) {
-            $host = "localhost";
-            $dbname = "test_appointments";
-            $username = "root";
-            $password = "";                 
-            //connect to mysql
-            $conn = new mysqli($host, $username, $password, $dbname);
-            if($conn->connect_error){
-                die("Connection failed: " . $conn->connect_error);
-            }
+            require "connection.php" ;
 
             $id = $_GET['id'];
             $stmt2 = $conn->prepare("DELETE FROM appointments WHERE id=?");
@@ -31,7 +23,7 @@
             $stmt2->execute();
             $stmt2->close();
 
-            $conn->close();
+            require "disconnect.php";
         }
     ?>
     
@@ -57,17 +49,8 @@
                 //wildcard so if $name is anywhere in the name colum, that row is selected
                 $nameInput = cleanInput($_POST["nameInput"]);
                 $name = "%$nameInput%";
-                $host = "localhost";
-                $dbname = "test_appointments";
-                $username = "root";
-                $password = "";
                 
-                //connect to mysql
-                $conn = new mysqli($host, $username, $password, $dbname);
-
-                if($conn->connect_error){
-                    die("Connection failed: " . $conn->connect_error);
-                }
+                require "connection.php";
                 //prepare to select from appointments based on name and ordered by date and then time
                 $stmt = $conn->prepare("SELECT * FROM appointments WHERE name LIKE ? ORDER BY date, time");
                 $stmt->bind_param("s",$name);
@@ -110,7 +93,7 @@
                             }
             
                             $stmt->close();
-                            $conn->close();
+                            require "disconnect.php";
             }
         }
         echo "<div><h3 class=`text-cemter mt-5'>$nameErr</h3></div>";
