@@ -6,8 +6,34 @@
     <title>Search for an Appointment by Name</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/215a3ecc61.js" crossorigin="anonymous"></script>
 </head>
 <body class="body">
+    <?php
+        //use functions from functions.php and initalize variables
+        require "functions.php";
+        $nameInput = $nameErr = "";
+
+        if (isset($_GET['id'])) {
+            $host = "localhost";
+            $dbname = "test_appointments";
+            $username = "root";
+            $password = "";                 
+            //connect to mysql
+            $conn = new mysqli($host, $username, $password, $dbname);
+            if($conn->connect_error){
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            $id = $_GET['id'];
+            $stmt2 = $conn->prepare("DELETE FROM appointments WHERE id=?");
+            $stmt2->bind_param("i", $id);
+            $stmt2->execute();
+            $stmt2->close();
+
+            $conn->close();
+        }
+    ?>
     
     <div class="container-fluid">
         <h1 class="title text-center">Search By Name</h1>
@@ -23,10 +49,6 @@
             <button class="btn" id="name-return-home">Return Home</button>
         </a>
         <?php
-        //use functions from functions.php and initalize variables
-        require "functions.php";
-        $nameInput = $nameErr = "";
-
         //when the the form is submitted and the method is post, run this php
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             if(empty($_POST["nameInput"])){
@@ -64,6 +86,7 @@
                                     <th>Phone Number</th>
                                     <th>Date</th>
                                     <th>Time</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>";
@@ -75,6 +98,9 @@
                                 <td>" . $row["number"] . "</td>
                                 <td>" . $row["date"] . "</td>
                                 <td>" . $row["time"] . "</td>
+                                <td>
+                                    <a href='search-name.php?id=" . $row["id"] . "'><i class='fas fa-ban text-danger'></i></a>
+                                </td>
                             </tr>";
                                 }
                                 echo "</tbody></table></div>";
