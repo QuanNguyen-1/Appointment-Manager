@@ -6,8 +6,26 @@
     <title>Search For an Appointment by Date</title>
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/215a3ecc61.js" crossorigin="anonymous"></script>
 </head>
 <body class="body">
+    <?php
+        //use functions from functions.php and initalize variables
+        require "functions.php";
+        $date = $dateErr = "";
+
+        if (isset($_GET['id'])) {
+            require "connection.php" ;
+
+            $id = $_GET['id'];
+            $stmt2 = $conn->prepare("DELETE FROM appointments WHERE id=?");
+            $stmt2->bind_param("i", $id);
+            $stmt2->execute();
+            $stmt2->close();
+
+            require "disconnect.php";
+        }
+    ?>
     <div class="container-fluid">
         <h1 class="title text-center">Search By Date</h1>
         <!-- the form is being sent to this same page -->
@@ -22,26 +40,15 @@
             <button class="btn" id="date-return-home">Return Home</button>
         </a>
         <?php
-            //use functions from functions.php and initalize variables
-            require "functions.php";
-            $date = $dateErr = "";
+
             //when the the form is submitted and the method is post, run this php
             if($_SERVER['REQUEST_METHOD'] == "POST"){
                 if(empty($_POST["dateInput"])){
                     $dateErr = "Date is required";
                 } else {
                     $date = cleanInput($_POST["dateInput"]);
-                    $host = "localhost";
-                    $dbname = "test_appointments";
-                    $username = "root";
-                    $password = "";
                     
-                    //connect to mysql
-                    $conn = new mysqli($host, $username, $password, $dbname);
-
-                    if($conn->connect_error){
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+                    require "connection.php";
 
                     //prepare to select from appointments based on date and ordered by time
                     $stmt = $conn->prepare("SELECT * FROM appointments WHERE date=? ORDER BY time");
@@ -61,17 +68,21 @@
                                             <th>Phone Number</th>
                                             <th>Date</th>
                                             <th>Time</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                             <tbody>";
                         //loop through all the row results from the select query
-                        while($rows = $result->fetch_assoc()){
+                        while($row = $result->fetch_assoc()){
                             echo "<tr>
-                                    <td>" . $rows["id"] . "</td>
-                                    <td>" . $rows["name"] . "</td>
-                                    <td>" . $rows["number"] . "</td>
-                                    <td>" . $rows["date"] . "</td>
-                                    <td>" . $rows["time"] . "</td>
+                                    <td>" . $row["id"] . "</td>
+                                    <td>" . $row["name"] . "</td>
+                                    <td>" . $row["number"] . "</td>
+                                    <td>" . $row["date"] . "</td>
+                                    <td>" . $row["time"] . "</td>
+                                    <td>
+                                        <a href='search-date.php?id=" . $row["id"] . "'><i class='fas fa-ban text-danger'></i></a> 
+                                    </td>
                                 </tr>";
                         }
                         echo "</tbody></table></div>";
@@ -81,7 +92,7 @@
                     }
 
                     $stmt->close();
-                    $conn->close();
+                    require "disconnect.php";
                 }
             }
             echo "<div><h3 class=`text-cemter mt-5'>$dateErr</h3></div>";
